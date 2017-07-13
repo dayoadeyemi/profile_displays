@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 import csv, os, re, itertools, nltk, codecs
 from decimal import Decimal
 from profiles.models import Profile
