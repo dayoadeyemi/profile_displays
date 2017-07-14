@@ -1,26 +1,34 @@
 {% extends "profiles/base.html" %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>About Me</h1>
-        </div>
+<div class="row">
+    <div class="col">
+        <h1>About Me</h1>
     </div>
-    {% include "profiles/summary.html" %}
-    <div class="row">
-        <div class="col">
-            <p>{{ profile.about_me }}</p>
-            <h1>Qualifications</h1>
-            <p>{{ profile.qualifications }}</p>
-            <h1>Counselling Areas</h1>
-            <div class="container">
-                <ul class="row">
-                {% for counselling_area in profile.counselling_areas %}
-                    <li class="col-xl-4 col-md-6">{{ counselling_area }}</li>
-                {% endfor %}
-                </ul>
-            </div>
+</div>
+{% include "profiles/summary.html" %}
+<div class="row">
+    <div class="col">
+        <p>{{ profile.about_me }}</p>
+        <h1>Qualifications</h1>
+        <p>{{ profile.qualifications }}</p>
+        <h1>Counselling Areas</h1>
+        <div class="container">
+            <ul class="row">
+            {% for counselling_area in profile.counselling_areas %}
+                <li class="col-xl-4 col-md-6">{{ counselling_area }}</li>
+            {% endfor %}
+            </ul>
         </div>
+        {% if show_similar %}
+        <h1>Similar Profiles</h1>
+        <div class="row">
+            {% for profile in simliarProfiles %}
+            <div class="col-lg-6">
+                {% include "profiles/summary.html" %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

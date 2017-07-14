@@ -1,20 +1,13 @@
 {% extends "profiles/base.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Profiles</h1>
-        </div>
+{% include "profiles/pager.html" %}
+<div class="row">
+    {% for profile in profiles %}
+    <div class="col-lg-6">
+        {% include "profiles/summary.html" %}
     </div>
-    {% include "profiles/pager.html" %}
-    <div class="row">
-        {% for profile in profiles %}
-        <div class="col-lg-6">
-            {% include "profiles/summary.html" %}
-        </div>
-        {% endfor %}
-    </div>
-    {% include "profiles/pager.html" %}
+    {% endfor %}
 </div>
+{% include "profiles/pager.html" %}
 {% endblock %}

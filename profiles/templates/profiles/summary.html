@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col-lg-4 col-md-3 col-sm-4 col-6">
         <div>
+            {% if profile.similarity %}
+                <p>Similarity:  {% widthratio profile.similarity 1 100 %}%</p>
+            {% endif %}
             <a href="{% url 'full' id=profile.id %}">
                 <canvas class="img-thumbnail img-fluid" width="300" height="300" data-jdenticon-hash="{{ profile.id_hash }}"></canvas>
             </a>
@@ -37,7 +40,6 @@
                 </span>
             {% endfor %}
         </p>
-        
-        <p>Fees: {{ profile.presentable_fees }}</p>
+        <p>Fees: {{ profile.presentable_fees }} {% if profile.concessions_availible %}(Concessions Availible){% endif %}</p>
     </div>
 </div>

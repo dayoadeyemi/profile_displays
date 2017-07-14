@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.indexes import GinIndex
+
 from uuid import uuid4
 
 import hashlib
@@ -19,8 +21,18 @@ class Profile(models.Model):
     fees = models.DecimalField(null=True, decimal_places=2, max_digits=10)
     client_types = ArrayField(models.CharField(max_length=256), default=empty)
     concessions_availible = models.BooleanField(default=False)
+    keywords = ArrayField(models.CharField(max_length=256), default=empty)
     presentable_fees = None
     id_hash = None
+    
+    class Meta:
+        indexes = [GinIndex(fields=[
+            'keywords',
+            'consultation_types',
+            'counselling_areas',
+            'client_types'
+        ])]
+    
     def presentable(self):
         self.presentable_fees = '~ £' + str(int(self.fees)) if self.fees else 'Unknown'
         self.id_hash = hashlib.sha224(str(self.id)).hexdigest()
