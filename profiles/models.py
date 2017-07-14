@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from uuid import uuid4
 
+import md5
+
 def empty():
     return []
 
@@ -17,3 +19,9 @@ class Profile(models.Model):
     fees = models.DecimalField(null=True, decimal_places=2, max_digits=10)
     client_types = ArrayField(models.CharField(max_length=256), default=empty)
     concessions_availible = models.BooleanField(default=False)
+    presentable_fees = None
+    id_hash = None
+    def presentable(self):
+        self.presentable_fees = '~ £' + str(int(self.fees)) if self.fees else 'Unknown'
+        self.id_hash = md5.new(str(self.id)).hexdigest()
+        return self

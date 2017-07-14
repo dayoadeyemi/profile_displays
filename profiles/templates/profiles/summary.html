@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-4 col-6">
+        <div>
+            <a href="{% url 'full' id=profile.id %}">
+                <canvas class="img-thumbnail img-fluid" width="300" height="300" data-jdenticon-hash="{{ profile.id_hash }}"></canvas>
+            </a>
+        </div>
+    </div>
+    <div class="col-6">
+        <p>Consultation Types:
+            {% for consultation_type in profile.consultation_types %}
+                <span class="badge badge-default">
+                {% if consultation_type == 'face_to_face' %}
+                    Face to Face
+                {% elif consultation_type == 'online' %}
+                    Online
+                {% elif consultation_type == 'telephone' %}
+                    Phone
+                {% endif %}
+                </span>
+            {% endfor %}
+        </p>
+        <p>Client Types:   
+            {% for client_type in profile.client_types %}
+                <span class="badge badge-default">
+                {% if client_type == 'individuals' %}
+                    Individuals
+                {% elif client_type == 'children' %}
+                    children
+                {% elif client_type == 'couples' %}
+                    Couples
+                {% elif client_type == 'groups' %}
+                    Groups
+                {% elif client_type == 'families' %}
+                    Families
+                {% endif %}
+                </span>
+            {% endfor %}
+        </p>
+        
+        <p>Fees: {{ profile.presentable_fees }}</p>
+    </div>
+</div>

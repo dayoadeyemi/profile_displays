@@ -26,7 +26,8 @@ SECRET_KEY = '!-4sfu=z%1obi+$z3rir2koft1a*m@^57bn!8%#k(=%(a*(#mf'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'warm-thicket-89093.herokuapp.com'
+    'localhost',
+    'warm-thicket-89093.herokuapp.com',
 ]
 
 
