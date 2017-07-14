@@ -69,12 +69,6 @@ def concessions_availible(row):
     else:
         return False
 
-# ps = nltk.stem.PorterStemmer()
-nounParser = nltk.RegexpParser('''
-    NP: {<DT>? <JJ>* <NN.*>+}
-    DP: {(<IN>?<PRP.?>?<RB.?>?<NP><POS>?<VBG>?<CC>?<TO>?)+}
-    ''')
-
 def extract_client_types(row):
     """
     possible client types being "children", "couples", "groups" and "families"
