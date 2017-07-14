@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from uuid import uuid4
 
-import md5
+import hashlib
 
 def empty():
     return []
@@ -23,5 +23,5 @@ class Profile(models.Model):
     id_hash = None
     def presentable(self):
         self.presentable_fees = '~ £' + str(int(self.fees)) if self.fees else 'Unknown'
-        self.id_hash = md5.new(str(self.id)).hexdigest()
+        self.id_hash = hashlib.sha224(str(self.id)).hexdigest()
         return self
